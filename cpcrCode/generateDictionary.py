@@ -1,14 +1,21 @@
+
+from markupsafe import Markup
+
+
 class generateDictionary :
 
-    def init(self, keys, maps) :
-        self.keys = keys
-        self.maps = maps
+    def __init__(self) :
+        self.book = dict()
 
-    def generate(self) :
-        dictionary = {}
-        for i in range(len(self.maps)):
-            dictionary[self.keys[i]] = self.maps[i]
-        return dictionary
+    def generate(self, keys, maps) :
+        for i in range(len(maps)):
+            self.addEntry(keys[i], maps[i])
 
+    def addEntry(self, key, map) :
+        if map in self.book :
+            print("map already in dictionary")
+        else:
+            self.book[key] = map
 
-
+    def returnDictionary(self) :
+        return self.book
