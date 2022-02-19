@@ -3,9 +3,7 @@ import click
 from rich.logging import RichHandler
 from rich.progress import track
 from pathlib import Path
-from receptorMaps import getData
-from receptorMaps import saveData
-from receptorMaps import generateDictionary
+from cpcrCode import getData, saveData, generateDictionary
 from neuromaps import transforms
 
 FORMAT = "%(message)s"
