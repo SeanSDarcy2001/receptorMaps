@@ -3,7 +3,9 @@ import click
 from rich.logging import RichHandler
 from rich.progress import track
 from pathlib import Path
-from receptorMaps import getData
+from receptorMaps import getData, saveData
+import neuromaps
+from neuromaps import transforms
 
 FORMAT = "%(message)s"
 logging.basicConfig(
@@ -30,7 +32,21 @@ def main(
     pass
 
 
-    maps = getData.load(data_dir / f"Problem4-BodyA.txt")
+    maps = getData(data_dir).getMaps()
+    fsLR_tuples = []
+    fsL_maps = []
+    fsR_maps = []
+    for map in maps :
+        transform = transforms.min152_to_fslr(map, '32k')
+        fsLR_tuples.append(transform)
+        fsL_maps.append(transform[0].agg_data())
+        fsR_maps.append(transform[1].agg_data())
+    
+    
+
+
+
+
 
 if __name__ == "__main()__" :
     main()
