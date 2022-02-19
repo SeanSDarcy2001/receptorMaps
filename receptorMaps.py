@@ -3,11 +3,10 @@ import click
 from rich.logging import RichHandler
 from rich.progress import track
 from pathlib import Path
-from receptorMaps import getData, saveData
-import neuromaps
+from receptorMaps import getData
+from receptorMaps import saveData
+from receptorMaps import generateDictionary
 from neuromaps import transforms
-
-from receptorMaps.generateDictionary import generateDictionary
 
 FORMAT = "%(message)s"
 logging.basicConfig(
