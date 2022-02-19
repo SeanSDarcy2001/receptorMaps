@@ -26,27 +26,31 @@ log = logging.getLogger("receptorMaps")
 def main(data_dir = "inputs", output_dir = "outputs") : 
     data_dir = Path(data_dir).resolve()
     output_dir = Path(output_dir).resolve()
-    if not output_dir.os.exists():
+    if not output_dir.exists():
         output_dir.mkdir()
     pass
-    print("hey")
-    print("i like")
     getter= getData(data_dir)
     maps = getter.getMaps()
-    keys = []
+    keys = getter.getKeys()
     fsLR_tuples = []
     #fsL_maps = []
     #fsR_maps = []
     for map in maps :
-        transform = transforms.min152_to_fslr(map, '32k')
+        transform = transforms.mni152_to_fslr(map, '32k')
         fsLR_tuples.append(transform)
         #fsL_maps.append(transform[0].agg_data())
         #fsR_maps.append(transform[1].agg_data())
     
-    dict = generateDictionary(keys, fsLR_tuples).generate()
+    dictWriter = generateDictionary()
+    dictWriter.generate(keys, fsLR_tuples)
+    dict = dictWriter.returnDictionary()
     saver = saveData("fsLR32k_receptorMapDictionary")
     saver.save(dict, output_dir)
+
+    print(dict)
 
 
 if __name__ == "__main()__" :
     main()
+
+main()
