@@ -7,6 +7,8 @@ from receptorMaps import getData, saveData
 import neuromaps
 from neuromaps import transforms
 
+from receptorMaps.generateDictionary import generateDictionary
+
 FORMAT = "%(message)s"
 logging.basicConfig(
     level="INFO",
@@ -33,16 +35,19 @@ def main(
 
 
     maps = getData(data_dir).getMaps()
+    keys = []
     fsLR_tuples = []
-    fsL_maps = []
-    fsR_maps = []
+    #fsL_maps = []
+    #fsR_maps = []
     for map in maps :
         transform = transforms.min152_to_fslr(map, '32k')
         fsLR_tuples.append(transform)
-        fsL_maps.append(transform[0].agg_data())
-        fsR_maps.append(transform[1].agg_data())
+        #fsL_maps.append(transform[0].agg_data())
+        #fsR_maps.append(transform[1].agg_data())
     
-    
+    dict = generateDictionary(keys, fsLR_tuples).generate()
+    saveData("fsLR32k_receptorMapDictionary").save(dict)
+
 
 
 

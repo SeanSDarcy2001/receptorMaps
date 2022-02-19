@@ -1,5 +1,5 @@
 from pathlib import Path
-import logging
+import logging as log
 
 class saveData:
 
