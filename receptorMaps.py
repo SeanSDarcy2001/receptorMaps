@@ -1,5 +1,6 @@
 import logging
 import click
+import os
 from rich.logging import RichHandler
 from rich.progress import track
 from pathlib import Path
@@ -14,15 +15,15 @@ logging.basicConfig(
     handlers=[RichHandler(rich_tracebacks=True)],
 )
 
-log = logging.getLogger("friedBrains")
+log = logging.getLogger("receptorMaps")
 
 @click.command()
-@click.option("-d", "--data-dir", default="data", help="Where the data is.")
+@click.option("-d", "--data-dir", default="inputs", help="Where the data is.")
 @click.option("-o", "--output_dir", default="outputs", help="Where to store outputs.")
 @click.option("-n", "--name", default="debug", help="Which experiment to run.")
 
 def main(
-    data_dir : str = "data", output_dir : str = "outputs", name : str = "debug"
+    data_dir : str = "inputs", output_dir : str = "outputs", name : str = "debug"
 ) :
     data_dir = Path(data_dir).resolve()
     output_dir = Path(output_dir).resolve()
@@ -43,11 +44,8 @@ def main(
         #fsR_maps.append(transform[1].agg_data())
     
     dict = generateDictionary(keys, fsLR_tuples).generate()
-    saveData("fsLR32k_receptorMapDictionary").save(dict, output_dir)
-
-
-
-
+    saver = saveData("fsLR32k_receptorMapDictionary")
+    saver.save(dict, output_dir)
 
 
 if __name__ == "__main()__" :
