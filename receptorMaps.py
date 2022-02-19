@@ -7,6 +7,8 @@ from pathlib import Path
 from cpcrCode import getData, saveData, generateDictionary
 from neuromaps import transforms
 
+print("out of main")
+
 FORMAT = "%(message)s"
 logging.basicConfig(
     level="INFO",
@@ -20,17 +22,17 @@ log = logging.getLogger("receptorMaps")
 @click.command()
 @click.option("-d", "--data-dir", default="inputs", help="Where the data is.")
 @click.option("-o", "--output_dir", default="outputs", help="Where to store outputs.")
-@click.option("-n", "--name", default="debug", help="Which experiment to run.")
 
-def main(data_dir : str = "inputs", output_dir : str = "outputs", name : str = "debug") : 
+def main(data_dir = "inputs", output_dir = "outputs") : 
     data_dir = Path(data_dir).resolve()
     output_dir = Path(output_dir).resolve()
     if not output_dir.os.exists():
         output_dir.mkdir()
     pass
-
-
-    maps = getData(data_dir).getMaps()
+    print("hey")
+    print("i like")
+    getter= getData(data_dir)
+    maps = getter.getMaps()
     keys = []
     fsLR_tuples = []
     #fsL_maps = []
