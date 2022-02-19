@@ -43,7 +43,7 @@ def main(
         #fsR_maps.append(transform[1].agg_data())
     
     dict = generateDictionary(keys, fsLR_tuples).generate()
-    saveData("fsLR32k_receptorMapDictionary").save(dict)
+    saveData("fsLR32k_receptorMapDictionary").save(dict, output_dir)
 
 
 
