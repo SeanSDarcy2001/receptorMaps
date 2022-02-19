@@ -22,9 +22,7 @@ log = logging.getLogger("receptorMaps")
 @click.option("-o", "--output_dir", default="outputs", help="Where to store outputs.")
 @click.option("-n", "--name", default="debug", help="Which experiment to run.")
 
-def main(
-    data_dir : str = "inputs", output_dir : str = "outputs", name : str = "debug"
-) :
+def main(data_dir : str = "inputs", output_dir : str = "outputs", name : str = "debug") : 
     data_dir = Path(data_dir).resolve()
     output_dir = Path(output_dir).resolve()
     if not output_dir.os.exists():
