@@ -32,23 +32,25 @@ def main(data_dir = "inputs", output_dir = "outputs") :
     getter= getData(data_dir)
     maps = getter.getMaps()
     keys = getter.getKeys()
-    fsLR_tuples = []
-    #fsL_maps = []
-    #fsR_maps = []
+    #fsLR_tuples = []
+    fsL_maps = []
+    fsR_maps = []
     for map in maps :
         transform = transforms.mni152_to_fslr(map, '32k')
-        fsLR_tuples.append(transform)
-        #fsL_maps.append(transform[0].agg_data())
-        #fsR_maps.append(transform[1].agg_data())
+        #fsLR_tuples.append(transform)
+        fsL_maps.append(transform[0].agg_data())
+        fsR_maps.append(transform[1].agg_data())
     
-    dictWriter = generateDictionary()
-    dictWriter.generate(keys, fsLR_tuples)
-    dict = dictWriter.returnDictionary()
-    saver = saveData("fsLR32k_receptorMapDictionary")
-    saver.save(dict, output_dir)
-
-    print(dict)
-
+    dictWriter1 = generateDictionary()
+    dictWriter1.generate(keys, fsL_maps)
+    leftHemi_maps = dictWriter1.returnDictionary()
+    dictWriter2 = generateDictionary()
+    dictWriter2.generate(keys, fsR_maps)
+    rightHemi_maps = dictWriter2.returnDictionary()
+    left_saver = saveData("fsLR32k_receptorMapDictionary_LEFT")
+    left_saver.save(leftHemi_maps, output_dir)
+    right_saver = saveData("fsLR32k_receptorMapDictionary_RIGHT")
+    right_saver.save(rightHemi_maps, output_dir)
 
 if __name__ == "__main()__" :
     main()
