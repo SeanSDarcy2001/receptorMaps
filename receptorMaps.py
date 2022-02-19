@@ -1,6 +1,6 @@
 import logging
 import click
-import os
+from os import mkdir
 from rich.logging import RichHandler
 from rich.progress import track
 from pathlib import Path
@@ -27,7 +27,7 @@ def main(
 ) :
     data_dir = Path(data_dir).resolve()
     output_dir = Path(output_dir).resolve()
-    if not output_dir.exists():
+    if not output_dir.os.exists():
         output_dir.mkdir()
     pass
 
