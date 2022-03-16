@@ -1,5 +1,5 @@
-import numpy as np
 from pathlib import Path
+import re
 
 class getData:
     """Parses the LED marker data."""
@@ -13,7 +13,13 @@ class getData:
         for file in fileList:
             print(file)
             self.MNImaps.append(file)
-            self.keys.append(str(file))
+            fileName = str(file)
+            try:
+                found = re.search('/inputs/(.+?).nii', fileName).group(1)
+                print(found)
+            except AttributeError:
+                pass
+            self.keys.append(found)
 
     def getMaps(self) :
         print("we called get maps")
