@@ -3,7 +3,7 @@
 """
 Created on Wed Mar  9 11:31:29 2022
 
-@author: bwinsto2
+@author: sdarcy2, bwinsto2
 """
 import sys
 sys.path.append('/usr/local/connectome_harmonic_core/connectome_harmonic_core')
@@ -17,38 +17,44 @@ import json
 from cpcrCode import saveData
 
 
+
 #mask every receptor map. you can use uts.mask_medial_wall_vecs (which is in utility_functions insdie the CHAP repo)
     
 #for each subject/session, there will be vecs.npy in
 #/data/hcp_test_retest/derivatives/chap/ = chap directory
 #compare each receptor map with each harmonic (each sub/session has 100)
 
-subs = inout.get_subs('/data/hcp_test_retest/derivatives/chap/')
+def main() : 
+    subs = inout.get_subs('/data/hcp_test_retest/derivatives/chap/')
 #mask = np.load('/data2/Brian/connectome_harmonics/mask.npy')
-maps = json.load('/outputs/fsLR32k_beliveau2017maps')
+    maps = json.load('/outputs/fsLR32k_beliveau2017maps')
 
 #mask receptor map medial wall
-maskedMaps = {}
-for rec in ['5-HT1A', '5-HT1B', '5-HT2A', '5-HT4', '5-HTT']: 
-    maskedMaps[rec] = uts.mask_medial_wall_vecs(maps[rec])
+    maskedMaps = {}
+    for rec in ['5-HT1A', '5-HT1B', '5-HT2A', '5-HT4', '5-HTT']: 
+        maskedMaps[rec] = uts.mask_medial_wall_vecs(maps[rec])
 
 #get subject vecs and generate comparison
 #comparisonDictionary is a nested structure queried by subject, receptor, harmonic
-comparisonDictionary = {}
-for subjects in subs:
-    comparisonDictionary[subjects] = {}
-    vectors = np.load('/vecs.npy')
-    for receptor in maskedMaps :
-        comparisonDictionary[subjects][receptor] = {}
-        for vecs in vectors:
-            comparisonDictionary[subjects][receptor][vecs] = np.absolute(receptor - vecs)
+    comparisonDictionary = {}
+    for subjects in subs:
+        comparisonDictionary[subjects] = {}
+        vectors = np.load('/vecs.npy')
+        for receptor in maskedMaps :
+            comparisonDictionary[subjects][receptor] = {}
+            for vecs in vectors:
+                comparisonDictionary[subjects][receptor][vecs] = np.absolute(receptor - vecs)
 
-output_dir = Path("outputs").resolve()
-if not output_dir.exists():
+    output_dir = Path("outputs").resolve()
+    if not output_dir.exists():
         output_dir.mkdir()
 
-saver = saveData("comparisons")
-saver.save(comparisonDictionary, output_dir)
+    saver = saveData("comparisons")
+    saver.save(comparisonDictionary, output_dir)
+
+if __name__ == "__main()__" :
+    main()
+main()
 
 #ignore below
 
