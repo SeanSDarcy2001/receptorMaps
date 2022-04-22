@@ -52,11 +52,13 @@ def main() :
             comparisonDictionary[subjects][receptor] = {}
             densities = maskedMaps[receptor]
             #print(vectors.shape)
+            i = 0
             for vecs in vectors[0]:
-                print(vecs)
-                print(densities)
+                print(i, "(should never exceed 100")
+                print(len(vecs))
+                print(len(densities))
                 comparisonDictionary[subjects][receptor][vecs] = np.absolute(np.subtract(densities, vecs))
-
+                i+=1
     output_dir = Path("outputs").resolve()
     if not output_dir.exists():
         output_dir.mkdir()
