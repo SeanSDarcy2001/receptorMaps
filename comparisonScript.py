@@ -51,7 +51,7 @@ def main() :
         for receptor in maskedMaps :
             comparisonDictionary[subjects][receptor] = {}
             for vecs in vectors:
-                comparisonDictionary[subjects][receptor][vecs] = np.absolute(np.subtract(receptor, vecs))
+                comparisonDictionary[subjects][receptor][vecs] = np.absolute(np.subtract(np.array(receptor), np.array(vecs)))
 
     output_dir = Path("outputs").resolve()
     if not output_dir.exists():
