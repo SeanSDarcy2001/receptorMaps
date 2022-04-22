@@ -35,8 +35,11 @@ def main() :
 #mask receptor map medial wall
     maskedMaps = {}
     mask = np.load('inputs/hcp_mask.npy')
-    for rec in ['5-HT1A', '5-HT1B', '5-HT2A', '5-HT4', '5-HTT']: 
-        maskedMaps[rec] = uts.mask_medial_wall_vecs(np.array(maps[rec]), mask)
+    for rec in ['5-HT1A', '5-HT1B', '5-HT2A', '5-HT4', '5-HTT']:
+        unMasked = np.array(maps[rec])
+        print("Unmasked:", unMasked.shape)
+        print("Mask:", mask.shape)
+        maskedMaps[rec] = uts.mask_medial_wall_vecs(unMasked, mask)
 
 #get subject vecs and generate comparison
 #comparisonDictionary is a nested structure queried by subject, receptor, harmonic
