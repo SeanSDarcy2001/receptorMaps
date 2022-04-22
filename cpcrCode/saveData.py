@@ -8,7 +8,10 @@ class saveData:
         self.fname = fname
 
     #save to directory
-    def save(self, dic, output_dir: str = "."):
+    def save(self, dic, output_dir: str = ".", dumps = False):
         newPath = Path.joinpath(output_dir, self.fname)
-        with open(newPath, "w") as self.fname:
-            json.dump(dic, self.fname)
+        if dumps == True :
+            newPath.write(json.dumps(dic))
+        else: 
+            with open(newPath, "w") as self.fname:
+                json.dump(dic, self.fname)

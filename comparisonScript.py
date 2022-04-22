@@ -64,7 +64,7 @@ def main() :
 
     print("Saving data...")
     saver = saveData("comparisons")
-    saver.save(comparisonDictionary, output_dir)
+    saver.save(comparisonDictionary, output_dir, dumps = True)
 
     print("Comparisons complete.")
 
