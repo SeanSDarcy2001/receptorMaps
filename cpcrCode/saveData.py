@@ -12,7 +12,7 @@ class saveData:
     def save(self, dic, output_dir: str = ".", pickled = False):
         newPath = Path.joinpath(output_dir, self.fname)
         if pickled:
-            fileHandler = open(newPath, "w")
+            fileHandler = open(newPath, "wb")
             print("Dumping with pickle:")
             pickle.dump(dic, fileHandler)
         with open(newPath, "w") as self.fname:
