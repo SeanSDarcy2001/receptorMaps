@@ -43,10 +43,11 @@ def main() :
 
 #get subject vecs and generate comparison
 #comparisonDictionary is a nested structure queried by subject, receptor, harmonic
+#test or retest?
     comparisonDictionary = {}
     for subjects in subs:
         comparisonDictionary[subjects] = {}
-        vectors = np.load('/vecs.npy')
+        vectors = np.load('ses-test/vecs.npy')
         for receptor in maskedMaps :
             comparisonDictionary[subjects][receptor] = {}
             for vecs in vectors:
