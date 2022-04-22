@@ -55,8 +55,8 @@ def main() :
             i = 0
             for vecs in vectors[0]:
                 print(i, "(should never exceed 100")
-                print(len(vecs))
-                print(len(densities))
+                print(vecs.shape)
+                print(densities.shape)
                 comparisonDictionary[subjects][receptor][vecs] = np.absolute(np.subtract(densities, vecs))
                 i+=1
     output_dir = Path("outputs").resolve()
