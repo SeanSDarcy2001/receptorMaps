@@ -58,7 +58,7 @@ def main() :
                 vecs = vectors[:, i]
                 print(vecs.shape)
                 print(densities.shape)
-                comparisonDictionary[subjects][receptor][i] = np.absolute(np.subtract(densities, vecs))
+                comparisonDictionary[subjects][receptor][i] = np.absolute(np.subtract(densities, vecs)).tolist()
     output_dir = Path("outputs").resolve()
     if not output_dir.exists():
         output_dir.mkdir()
