@@ -47,7 +47,7 @@ def main() :
     comparisonDictionary = {}
     for subjects in subs:
         comparisonDictionary[subjects] = {}
-        vectors = np.load('ses-test/vecs.npy')
+        vectors = np.load(subjects + '/ses-test/vecs.npy')
         for receptor in maskedMaps :
             comparisonDictionary[subjects][receptor] = {}
             for vecs in vectors:
