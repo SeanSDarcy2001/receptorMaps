@@ -50,10 +50,11 @@ def main() :
         vectors = np.load('/data/hcp_test_retest/derivatives/chap/sub-' + subjects + '/ses-test/vecs.npy')
         for receptor in maskedMaps :
             comparisonDictionary[subjects][receptor] = {}
+            densities = maskedMaps[receptor]
             for vecs in vectors:
                 print(vecs)
-                print(receptor)
-                comparisonDictionary[subjects][receptor][vecs] = np.absolute(np.subtract(np.array(receptor), np.array(vecs)))
+                print(densities)
+                comparisonDictionary[subjects][receptor][vecs] = np.absolute(np.subtract(densities, vecs))
 
     output_dir = Path("outputs").resolve()
     if not output_dir.exists():
