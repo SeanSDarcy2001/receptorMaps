@@ -52,8 +52,8 @@ def main() :
             comparisonDictionary[subjects][receptor] = {}
             densities = maskedMaps[receptor]
             for vecs in vectors:
-                print(vecs)
-                print(densities)
+                print(vecs.shape)
+                print(densities.shape)
                 comparisonDictionary[subjects][receptor][vecs] = np.absolute(np.subtract(densities, vecs))
 
     output_dir = Path("outputs").resolve()
