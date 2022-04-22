@@ -9,9 +9,9 @@ class saveData:
         self.fname = fname
 
     #save to directory
-    def save(self, dic, output_dir: str = ".", pickle = False):
+    def save(self, dic, output_dir: str = ".", pickled = False):
         newPath = Path.joinpath(output_dir, self.fname)
-        if pickle:
+        if pickled:
             fileHandler = open(newPath, "w")
             print("Dumping with pickle:")
             pickle.dump(dic, fileHandler)
