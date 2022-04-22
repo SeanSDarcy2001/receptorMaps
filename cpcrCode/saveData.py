@@ -11,7 +11,8 @@ class saveData:
     def save(self, dic, output_dir: str = ".", dumps = False):
         newPath = Path.joinpath(output_dir, self.fname)
         if dumps == True :
-            newPath.write(json.dumps(dic))
+            fo = open(newPath, "w")
+            fo.write(json.dumps(dic))
         else: 
             with open(newPath, "w") as self.fname:
                 json.dump(dic, self.fname)
