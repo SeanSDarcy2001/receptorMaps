@@ -6,6 +6,7 @@ from rich.progress import track
 from pathlib import Path
 from cpcrCode import getData, saveData, generateDictionary
 from neuromaps import transforms
+import numpy as np
 
 print("out of main")
 
@@ -41,7 +42,7 @@ def main(data_dir = "inputs", output_dir = "outputs") :
         #fsLR_tuples.append(transform)
         fsL_maps.append(transform[0].agg_data())
         fsR_maps.append(transform[1].agg_data())
-        fsLR_maps.append(transform[0].agg_data() + transform[1].agg_data())
+        fsLR_maps.append(np.concatenate(transform[0].agg_data(), transform[1].agg_data()))
     
     dictWriter1 = generateDictionary()
     dictWriter1.generate(keys, fsL_maps)
