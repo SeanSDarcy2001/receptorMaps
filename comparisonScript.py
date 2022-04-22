@@ -53,7 +53,7 @@ def main() :
             densities = maskedMaps[receptor]
             print(vectors.shape)
             i = 0
-            for vecs in vectors(axis = 1):
+            for vecs in vectors[:,]:
                 print(i, "(should never exceed 100")
                 print(vecs.shape)
                 print(densities.shape)
