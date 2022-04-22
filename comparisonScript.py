@@ -33,7 +33,7 @@ def main() :
 
 #mask receptor map medial wall
     maskedMaps = {}
-    mask = np.load('inputs/hcp_mask.npy')
+    mask = np.load('inputs/hcp_mask.npy').astype(int)
     print(mask)
     for rec in ['5-HT1A', '5-HT1B', '5-HT2A', '5-HT4', '5-HTT']: 
         maskedMaps[rec] = uts.mask_medial_wall_vecs(maps[rec], mask)
