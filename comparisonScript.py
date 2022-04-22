@@ -51,20 +51,22 @@ def main() :
         for receptor in maskedMaps :
             comparisonDictionary[subjects][receptor] = {}
             densities = maskedMaps[receptor]
-            print(vectors.shape)
             i = 0
             for i in range(vectors.shape[1]):
-                print(i, "(should never exceed 100")
+                print("Subject: ", subjects)
+                print("Receptor Type: ", receptor)
+                print("Harmonic Vector: ", i)
                 vecs = vectors[:, i]
-                print(vecs.shape)
-                print(densities.shape)
                 comparisonDictionary[subjects][receptor][i] = np.absolute(np.subtract(densities, vecs)).tolist()
     output_dir = Path("outputs").resolve()
     if not output_dir.exists():
         output_dir.mkdir()
 
+    print("Saving data...")
     saver = saveData("comparisons")
     saver.save(comparisonDictionary, output_dir)
+
+    print("Comparisons complete.")
 
 if __name__ == "__main()__" :
     main()
