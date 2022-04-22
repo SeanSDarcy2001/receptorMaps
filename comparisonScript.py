@@ -51,7 +51,7 @@ def main() :
         for receptor in maskedMaps :
             comparisonDictionary[subjects][receptor] = {}
             densities = maskedMaps[receptor]
-            #print(vectors.shape)
+            print(vectors.shape)
             i = 0
             for vecs in vectors[0]:
                 print(i, "(should never exceed 100")
