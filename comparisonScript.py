@@ -55,7 +55,7 @@ def main() :
             i = 0
             for vecs in vectors[0]:
                 print(i, "(should never exceed 100")
-                print(vecs.shape)
+                print(vecs)
                 print(densities.shape)
                 comparisonDictionary[subjects][receptor][vecs] = np.absolute(np.subtract(densities, vecs))
                 i+=1
