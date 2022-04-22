@@ -53,9 +53,9 @@ def main() :
             densities = maskedMaps[receptor]
             print(vectors.shape)
             i = 0
-            for vecs in vectors[0]:
+            for vecs in vectors[1]:
                 print(i, "(should never exceed 100")
-                print(vecs)
+                print(vecs.shape)
                 print(densities.shape)
                 comparisonDictionary[subjects][receptor][vecs] = np.absolute(np.subtract(densities, vecs))
                 i+=1
