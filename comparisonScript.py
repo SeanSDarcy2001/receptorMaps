@@ -27,7 +27,9 @@ from cpcrCode import saveData
 def main() : 
     subs = inout.get_subs('/data/hcp_test_retest/derivatives/chap/')
 #mask = np.load('/data2/Brian/connectome_harmonics/mask.npy')
-    maps = json.load('/outputs/fsLR32k_beliveau2017maps')
+
+    mapsFile = open('/outputs/fsLR32k_beliveau2017maps')
+    maps = json.load(mapsFile)
 
 #mask receptor map medial wall
     maskedMaps = {}
