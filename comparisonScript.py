@@ -25,6 +25,8 @@ from cpcrCode import saveData
 #compare each receptor map with each harmonic (each sub/session has 100)
 
 def main() : 
+
+    print("ICC Comparison Between Receptor Density Maps ans Harmonic Activations")
     subs = inout.get_subs('/data/hcp_test_retest/derivatives/chap/')
 #mask = np.load('/data2/Brian/connectome_harmonics/mask.npy')
 
@@ -57,7 +59,8 @@ def main() :
                 print("Receptor Type: ", receptor)
                 print("Harmonic Vector: ", i)
                 vecs = vectors[:, i]
-                comparisonDictionary[subjects][receptor][i] = np.absolute(np.subtract(densities, vecs)).tolist()
+                #comparisonDictionary[subjects][receptor][i] = np.absolute(np.subtract(densities, vecs)).tolist()
+                comparisonDictionary[subjects][receptor][i] = inout.icc_vecs(densities, vecs)
     output_dir = Path("outputs").resolve()
     if not output_dir.exists():
         output_dir.mkdir()
